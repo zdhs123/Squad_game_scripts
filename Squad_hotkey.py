@@ -1,4 +1,4 @@
-#import _thread
+    #import _thread
 import keyboard
 import mouse
 #from mouse._mouse_event import ButtonEvent, MoveEvent, WheelEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
@@ -20,8 +20,8 @@ if_lmap_key_pressed=False
 
 #mouse.on_button(lambda:keyboard.send(mag_triggrt_key),(),RIGHT,UP)#右键开镜放大
 #keyboard.remap_key('shift', mag_key)#Win键放大
+keyboard.hook(lambda event:(print(event.name+":",event.scan_code)))#调试用显示按键码
 keyboard.block_key(91)#禁用win键，防止跳出游戏
-#keyboard.hook(lambda event:(print(event.scan_code)))#调试用显示按键码
 
 
 
