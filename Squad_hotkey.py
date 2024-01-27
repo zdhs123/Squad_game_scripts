@@ -1,4 +1,4 @@
-import _thread
+#import _thread
 import keyboard
 import mouse
 from mouse._mouse_event import ButtonEvent, MoveEvent, WheelEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
@@ -6,34 +6,34 @@ import time
 
 
 #放大镜
-mag_key='-'
-#   if_mag_key_pressed=False
+mag_key=91#Win键
+mag_triggrt_key=74#Num-键
+if_mag_key_pressed=False
 #小地图
 smap_key='m'
 if_smap_key_pressed=False
 #大地图    
 lmap_key='tab'
 if_lmap_key_pressed=False
-#右键开镜放大
-#if_mouse_right_down=False
-#def mouse_down_callback():
-#    keyboard.send(mag_key)
-def mouse_up_callback():
-    keyboard.send(mag_key)
 
-#mouse.on_button(mouse_down_callback,(),RIGHT,DOWN)
-mouse.on_button(mouse_up_callback,(),RIGHT,UP)
+
+
+#mouse.on_button(lambda:keyboard.send(mag_triggrt_key),(),RIGHT,UP)#右键开镜放大
+#keyboard.remap_key('shift', mag_key)#Win键放大
+keyboard.block_key(91)#禁用win键，防止跳出游戏
+#keyboard.hook(lambda event:(print(event.scan_code)))#调试用显示按键码
+
 
 
 while True:
     time.sleep(0.001)
 #放大镜
-#    if (not if_mag_key_pressed) and keyboard.is_pressed(mag_key):
-#        if_mag_key_pressed=True
-#        keyboard.send('-')
-#    elif if_mag_key_pressed and (not keyboard.is_pressed(mag_key)):
-#        if_mag_key_pressed=False
-#        keyboard.send('-')
+    if (not if_mag_key_pressed) and keyboard.is_pressed(mag_key):
+        if_mag_key_pressed=True
+        keyboard.send(mag_triggrt_key)
+    elif if_mag_key_pressed and (not keyboard.is_pressed(mag_key)):
+        if_mag_key_pressed=False
+        keyboard.send(mag_triggrt_key)
 #小地图
     if (not if_smap_key_pressed) and keyboard.is_pressed(smap_key):
         if_smap_key_pressed=True
