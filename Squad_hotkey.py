@@ -6,7 +6,7 @@ import time
 
 
 #放大镜
-mag_key=91#Win键
+mag_key='caps lock'
 mag_triggrt_key=74#Num-键
 if_mag_key_pressed=False
 #小地图
