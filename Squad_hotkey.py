@@ -31,9 +31,11 @@ while True:
     if (not if_mag_key_pressed) and keyboard.is_pressed(mag_key):
         if_mag_key_pressed=True
         keyboard.send(mag_triggrt_key)
+        #keyboard.send('shift')
     elif if_mag_key_pressed and (not keyboard.is_pressed(mag_key)):
         if_mag_key_pressed=False
         keyboard.send(mag_triggrt_key)
+        #keyboard.release('shift')
 #小地图
     if (not if_smap_key_pressed) and keyboard.is_pressed(smap_key):
         if_smap_key_pressed=True
