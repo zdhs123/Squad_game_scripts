@@ -1,7 +1,7 @@
 #import _thread
 import keyboard
 import mouse
-#from mouse._mouse_event import ButtonEvent, MoveEvent, WheelEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
+from mouse._mouse_event import ButtonEvent, MoveEvent, WheelEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
 import time
 
 
@@ -28,11 +28,11 @@ keyboard.block_key(91)#禁用win键，防止跳出游戏
 while True:
     time.sleep(0.001)
 #放大镜
-    if (not if_mag_key_pressed) and keyboard.is_pressed(mag_key):
+    if (not if_mag_key_pressed) and (keyboard.is_pressed(mag_key) or mouse.is_pressed(RIGHT)):
         if_mag_key_pressed=True
         keyboard.send(mag_triggrt_key)
         #keyboard.send('shift')
-    elif if_mag_key_pressed and (not keyboard.is_pressed(mag_key)):
+    elif if_mag_key_pressed and (not (keyboard.is_pressed(mag_key) or mouse.is_pressed(RIGHT))):
         if_mag_key_pressed=False
         keyboard.send(mag_triggrt_key)
         #keyboard.release('shift')
