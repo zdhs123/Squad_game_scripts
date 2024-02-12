@@ -1,24 +1,37 @@
-#import _thread
+from threading import Thread,Timer
 import keyboard
 import mouse
-#from mouse._mouse_event import ButtonEvent, MoveEvent, WheelEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
+from mouse._mouse_event import ButtonEvent, MoveEvent, WheelEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
 import time
 
 
 #放大镜
-mag_key='caps lock'
+mag_key=58#58=caps lock,57=space
 mag_triggrt_key=74#Num-键
-if_mag_key_pressed=False
+
 #小地图
 smap_key='m'
-if_smap_key_pressed=False
+
 #大地图    
 lmap_key='tab'
+#标志位
+if_mag_key_pressed=False
+#if_mouse_R_pressed=False
+#if_mouse_R_pressed_and_maged=False
+if_smap_key_pressed=False
 if_lmap_key_pressed=False
 
+def event_mouse_double_click():
+    keyboard.send(74)
+def event_mouse_down():
+    Timer(0.15,lambda:(print('mouse_DOWN'))).start()
+    
+def event_mouse_up():
+    Thread(target=lambda:()).start()
 
-
-#mouse.on_button(lambda:keyboard.send(mag_triggrt_key),(),RIGHT,UP)#右键开镜放大
+#mouse.on_button(lambda:(Timer(0.15,lambda:(print('mouse_DOWN'))).start()),(),RIGHT,DOWN)#右键按下0.15秒开镜放大
+#mouse.on_button(event_mouse_double_click,(),RIGHT,DOUBLE)#右键双击开镜+放大
+#mouse.on_button(event_mouse_up,(),RIGHT,UP)#右键抬起终止线程
 #keyboard.remap_key('shift', mag_key)#Win键放大
 #keyboard.hook(lambda event:(print(event.name+":("+str(event.scan_code)+'):'+event.event_type )))#调试用显示按键码
 keyboard.block_key(91)#禁用win键，防止跳出游戏
@@ -31,14 +44,16 @@ while True:
     if (not if_mag_key_pressed) and (keyboard.is_pressed(mag_key)):
         if_mag_key_pressed=True
         keyboard.send(mag_triggrt_key)
+        pr_time=time.time()
         #keyboard.send('shift')
     elif if_mag_key_pressed and (not (keyboard.is_pressed(mag_key))):
         if_mag_key_pressed=False
-        keyboard.send(mag_triggrt_key)
-        #keyboard.release('shift')
+        if time.time()-pr_time>0.15:
+            keyboard.send(mag_triggrt_key)               
 #小地图
     if (not if_smap_key_pressed) and keyboard.is_pressed(smap_key):
         if_smap_key_pressed=True
+        smap_pr_time=time.time()
     elif if_smap_key_pressed and (not keyboard.is_pressed(smap_key)):
         if_smap_key_pressed=False
         keyboard.send(smap_key)
