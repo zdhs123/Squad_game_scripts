@@ -24,12 +24,15 @@ if_lmap_key_pressed=False
 def event_mouse_double_click():
     keyboard.send(74)
 def event_mouse_down():
-    Timer(0.15,lambda:(print('mouse_DOWN'))).start()
+    def mouse_down_thread():
+        if mouse.is_pressed(RIGHT):
+            keyboard.send(74)
+    Timer(0.2,mouse_down_thread).start()
     
 def event_mouse_up():
     Thread(target=lambda:()).start()
 
-#mouse.on_button(lambda:(Timer(0.15,lambda:(print('mouse_DOWN'))).start()),(),RIGHT,DOWN)#右键按下0.15秒开镜放大
+mouse.on_button(event_mouse_down,(),RIGHT,DOWN)#右键按下0.15秒开镜放大
 #mouse.on_button(event_mouse_double_click,(),RIGHT,DOUBLE)#右键双击开镜+放大
 #mouse.on_button(event_mouse_up,(),RIGHT,UP)#右键抬起终止线程
 #keyboard.remap_key('shift', mag_key)#Win键放大
@@ -48,7 +51,7 @@ while True:
         #keyboard.send('shift')
     elif if_mag_key_pressed and (not (keyboard.is_pressed(mag_key))):
         if_mag_key_pressed=False
-        if time.time()-pr_time>0.15:
+        if time.time()-pr_time>0.2:
             keyboard.send(mag_triggrt_key)               
 #小地图
     if (not if_smap_key_pressed) and keyboard.is_pressed(smap_key):
