@@ -28,7 +28,6 @@ def event_mouse_down():
         if mouse.is_pressed(RIGHT):
             keyboard.send(74)
     Timer(0.25,mouse_down_thread).start()
-    
 def event_mouse_up():
     Thread(target=lambda:()).start()
 
