@@ -27,7 +27,7 @@ def event_mouse_down():
     def mouse_down_thread():
         if mouse.is_pressed(RIGHT):
             keyboard.send(74)
-    Timer(0.2,mouse_down_thread).start()
+    Timer(0.25,mouse_down_thread).start()
     
 def event_mouse_up():
     Thread(target=lambda:()).start()
@@ -51,7 +51,7 @@ while True:
         #keyboard.send('shift')
     elif if_mag_key_pressed and (not (keyboard.is_pressed(mag_key))):
         if_mag_key_pressed=False
-        if time.time()-pr_time>0.2:
+        if time.time()-pr_time>0.25:
             keyboard.send(mag_triggrt_key)               
 #小地图
     if (not if_smap_key_pressed) and keyboard.is_pressed(smap_key):
