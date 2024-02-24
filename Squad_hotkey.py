@@ -1,8 +1,8 @@
 from threading import Thread,Timer
+import time
 import keyboard
 import mouse
 from mouse._mouse_event import ButtonEvent, MoveEvent, WheelEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
-import time
 
 
 #放大镜
@@ -11,31 +11,32 @@ mag_triggrt_key=74#Num-键
 
 #小地图
 smap_key='m'
-
 #大地图    
 lmap_key='tab'
 #标志位
 if_mag_key_pressed=False
-#if_mouse_R_pressed=False
-#if_mouse_R_pressed_and_maged=False
+# if_mouse_R_pressed=False
+# if_mouse_R_pressed_and_maged=False
 if_smap_key_pressed=False
 if_lmap_key_pressed=False
 
-def event_mouse_double_click():
-    keyboard.send(74)
+# def event_mouse_double_click():
+#     keyboard.send(74)
+
 def event_mouse_down():
     def mouse_down_thread():
         if mouse.is_pressed(RIGHT):
             keyboard.send(74)
     Timer(0.25,mouse_down_thread).start()
-def event_mouse_up():
-    Thread(target=lambda:()).start()
+
+# def event_mouse_up():
+#     Thread(target=lambda:()).start()
 
 mouse.on_button(event_mouse_down,(),RIGHT,DOWN)#右键按下0.15秒开镜放大
-#mouse.on_button(event_mouse_double_click,(),RIGHT,DOUBLE)#右键双击开镜+放大
-#mouse.on_button(event_mouse_up,(),RIGHT,UP)#右键抬起终止线程
-#keyboard.remap_key('shift', mag_key)#Win键放大
-#keyboard.hook(lambda event:(print(event.name+":("+str(event.scan_code)+'):'+event.event_type )))#调试用显示按键码
+# mouse.on_button(event_mouse_double_click,(),RIGHT,DOUBLE)#右键双击开镜+放大
+# mouse.on_button(event_mouse_up,(),RIGHT,UP)#右键抬起终止线程
+# keyboard.remap_key('shift', mag_key)#Win键放大
+# keyboard.hook(lambda event:(print(event.name+":("+str(event.scan_code)+'):'+event.event_type )))#调试用显示按键码
 keyboard.block_key(91)#禁用win键，防止跳出游戏
 
 
