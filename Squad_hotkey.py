@@ -5,7 +5,7 @@ import mouse
 from mouse._mouse_event import ButtonEvent, MoveEvent, WheelEvent, LEFT, RIGHT, MIDDLE, X, X2, UP, DOWN, DOUBLE
 
 
-#放大镜 
+#放大镜
 mag_key=58#58=caps lock,57=space
 mag_triggrt_key=74#Num-键
 
