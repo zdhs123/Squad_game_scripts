@@ -11,7 +11,7 @@ mag_triggrt_key=74#Num-键
 
 #小地图
 smap_key='m'
-#大地图
+#大地图    
 lmap_key='tab'
 #标志位
 if_mag_key_pressed=False
