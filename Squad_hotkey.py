@@ -109,7 +109,7 @@ while True:
     #     #     keyboard.send(mag_triggrt_key)
     #     #     if_magnified=False
     # elif if_mouse_R_pressed and (not mouse.is_pressed(RIGHT)):
-        if_mouse_R_pressed=False
+        # if_mouse_R_pressed=False
         # if time.time()-mouse_R_pr_time>0.15:  
 
         # elif time.time()-mouse_R_pr_time<0.3:
